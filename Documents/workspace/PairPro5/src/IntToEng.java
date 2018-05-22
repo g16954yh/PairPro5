@@ -9,22 +9,24 @@ public class IntToEng {
         System.out.println(translateEng(input));
 
     }
-
-    // 数値を英訳する変換するメソッド
+	
+	// 数値を英訳する変換するメソッド
     static String translateEng(int n) {
-    	String[] num1 = {"zero","one","two","three","four","five","six","seven","eight","nine","ten",
+    	String[] num1 = {"","one","two","three","four","five","six","seven","eight","nine","ten",
     			"eleven","twelve","thirteen","fourteen","fifteen","sisteen","seventeen","eighteen","nineteen"};
     	String[] num2 = {"","","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"};
     	String[] num3 = {"","hundred", "thousand"};
-    	int tp,op,hp,thp;
-    	//1~19
-    	if(n/20==0) return num1[n];
+    	int tp,op,hp,thp,tthp;
+    	//0~19
+    	if(n/20==0){
+    		if(n==0) return "zero";
+    		return num1[n];
+    	}
     	//20~99
     	else if(n/100==0){
     		tp = n/10;
     		op = n%10;
-    		if(op==0) return num2[tp];
-    		return num2[tp]+"-"+num1[op];
+    		return num2[tp]+" "+num1[op];
     	}
     	//100~999
     	else if(n/1000==0){
@@ -32,7 +34,6 @@ public class IntToEng {
     		n = n - hp * 100;
     		tp = n/10;
     		op = n%10;
-    		if(op==0) return num1[hp]+" "+num3[1]+" "+num2[tp];
     		return num1[hp]+" "+num3[1]+" "+num2[tp]+" "+num1[op];
     	}
 
@@ -44,8 +45,7 @@ public class IntToEng {
     		n = n - hp * 100;
     		tp = n/10;
     		op = n%10;
-    		if(op==0) return num1[thp]+" "+num3[2]+" "+num1[hp]+" "+num3[1]+" and "+num2[tp];
-    		return num1[thp]+" "+num3[2]+" "+num1[hp]+" "+num3[1]+" and "+num2[tp]+" "+num1[op];
-    	} 
+    		return num1[thp]+" "+num3[2]+" "+num1[hp]+" "+num3[1]+" "+num2[tp]+" "+num1[op];
+    	}
     }
 }
